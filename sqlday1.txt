@@ -1,0 +1,24 @@
+Q1. List all the columns of the Salespeople table. 
+Ans : select*from Salespeople;
+
+Q2.List all customers with a rating of 100. 
+Ans : select CNAME from customers where rating = 100;
+
+Q3.Find all records in the Customer table with NULL values in the city column. 
+
+Ans: SELECT *
+FROM Customers
+WHERE city IS NULL;
+
+Q4.Find the largest order taken by each salesperson on each date. 
+Ans : SELECT s.sname, o.date, MAX(o.amt) AS largest_order
+FROM Salespeople s
+INNER JOIN Orders o
+ON s.snum = o.snum
+GROUP BY s.sname, o.date;
+
+Q5.Arrange the Orders table by descending customer number.
+
+Ans : SELECT *
+FROM Orders
+ORDER BY CNUM DESC;

@@ -1,0 +1,45 @@
+Q6.Find which salespeople currently have orders in the Orders table. 
+Select distinct s.sname 
+From Salespeople s
+inner join order o 
+On s.snum = o.snum
+
+Q7.List names of all customers matched with the salespeople serving them
+Ans : select c.cname , s.sname from
+	Customer c inner join salesPeople s
+	On c.snum = s.num ;
+
+Q8.Find the names and numbers of all salespeople who had more than one customer. 
+Ans :select s.sname , s.snum from
+	Salespeople s Inner Join Customer c on 
+	s.Snum = c.Snum
+
+	Group by SName 
+having count(c.snum)> 1;
+
+
+
+
+
+Q9. Count the orders of each of the salespeople and output the results in descending order.
+Ans : select s.sname  , count(o.snum)
+From salespeople s inner join orders o
+On  s.snum = o.snum 
+Group by s.sname 
+Order by count(o.snum) desc;
+
+
+
+
+Q10.id is the primary key (column with unique values) for this table.
+Each row of this table contains the score of a game. Score is a floating point value with two decimal places.
+
+ 
+Write a solution to find the rank of the scores. The ranking should be calculated according to the following rules:
+The scores should be ranked from the highest to the lowest.
+If there is a tie between two scores, both should have the same ranking.
+After a tie, the next ranking number should be the next consecutive integer value. In other words, there should be no holes between ranks.
+Return the result table ordered by score in descending order.
+(Extra Question not in pdf)
+
+Ans : select score, dense_rank()over(order by score desc) 'rank' from Scores;
