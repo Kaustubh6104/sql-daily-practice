@@ -1,0 +1,28 @@
+Q11. display the department who have more than 40 employee count (Extra Question)
+Ans  : select d.dname 
+ from department d  
+Where 40 < (select count(*) from employee e where 
+		e.did = d.did );
+
+Q12.  List the Customer table if and only if one or more of the customers in the Customer table are located in San Jose
+
+Ans : select * from Customers 
+	Where Exists(select count(city ) from Customers 
+			Where city = ‘San Jose’);
+
+Q13. Match salespeople to customers according to what city they lived in.  
+Ans : select s.SName , c.cname, s.city   from Salespeople s inner join Customers c 
+On s.city  = c.city ; 
+
+Q14. Find the largest order taken by each salesperson. 
+Ans : select s.sname , max(o.amt) from 
+Salespeople s  join orders o 	
+On s.snum = o.snum
+Group by sname ;
+
+Q15.Find customers in San Jose who have a rating above 200
+Ans : select cname , city , rating 
+	From customers 
+	Where city = ‘San Jose’ 
+	And  rating >200;
+
