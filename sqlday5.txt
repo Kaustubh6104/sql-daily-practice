@@ -1,0 +1,29 @@
+
+Q21. Select all orders that had amounts that were greater than at least one of the orders from October 6. 
+Ans : select * from orders 
+	Where amt > any  (select amt from orders 
+			Where date = ‘10/06/96’);
+Q22.. Find all pairs of customers having the same rating. 
+Ans : select e1. Cname as C1 , e2. Cname as c2 from
+Customers e1 join Customers e2
+On e1.rating = e2.rating and e1.
+And e1.cnum < e2.cnum;
+
+	
+Q23. Find all customers whose CNUM is 1000 above the SNUM of Serres. 
+Ans : select c.cname , c.cnum from 
+	Customers c join salespeople s
+	On c.snum = s.snum where 
+	C.cnum = (select  snum+1000 from salesPeoplewhere 
+			
+			Sname = “serre”);
+Q24. Give the salespeople’s commissions as percentages instead of decimal numbers. 
+Ans : select sname, comm*100 as P
+	From SalesPeople; 
+
+Q25.  Find the largest order taken by each salesperson on each date, eliminating those MAX orders which are less than $3000.00 in value. 
+Ans : select s.sname  , max(o.amt) , o.date 
+From salespeople s join orders o 
+On s.snum = o.snum
+Group By o.odate , s.sname 
+Having max(o.amt) > 3000;    
