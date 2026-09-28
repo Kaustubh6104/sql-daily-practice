@@ -1,0 +1,27 @@
+Q16.  List the names and commissions of all salespeople in London. 
+Ans : select sname , comm from salespeople 
+	Where city = ‘London’;
+
+
+
+Q17. List all the orders of salesperson Motika from the Orders table. 
+Ans :  select * from orders o 
+Where o.snum = (select snum from salespeople 
+	Where sname = ‘Motika’)
+
+
+Q18. Find all customers with orders on October 3. 
+Ans :select cname from customers 
+Where  cnum = (select cnum from orders 
+	Where odate like ‘10/03/96’)
+
+Q19.Give the sums of the amounts from the Orders table, grouped by date, eliminating all those dates where the SUM was not at least 2000.00 above the MAX amount. 
+Ans : select sum(amt) , odate from 
+	Orders group by date 
+	Having sum(amt) > = max(amt) +2000;
+
+Q20.Write a query that uses the EXISTS operator to extract all salespeople who have customers with a rating of 300. 
+Ans : select * from salespeople s where
+exists (select  1 from customers c
+Where c.snum = s.snum
+	And Where rating =300);
