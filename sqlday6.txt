@@ -1,0 +1,33 @@
+Q26. List the largest orders for October 3, for each salesperson. 
+Ans : select s.sname , o.odate, max ( o.amt)
+From salespeople s join orders o 
+On s.snum = o.snum 
+Where o.odate = ‘10/03/96’
+Group by s.sname , o.odate;
+
+Q27. Find all customers located in cities where Serres (SNUM 1002) has customers. 
+Ans :select cname from customers where  city  in (select city from customers
+	Where snum = 1002);
+
+Q28.Select all customers with a rating above 200.00. 
+Ans : select CName from costumes where rating > 200;
+
+Q29.Count the number of salespeople currently listing orders in the Orders table
+Ans : select count(distinct s.sname ) from 
+salesperson s join orders o
+Where s.snum = o.snum;
+
+
+
+Q30.Write a query that produces all customers serviced by salespeople with a commission above 12%. Output the customer’s name and the salesperson’s rate of commission.
+Ans : select c.cname , s.comm as rate of Commision
+	From cname c join salespeople s 
+	On c.snum = s.snum,
+	Where s.comm >0.12;
+
+Q31. Find salespeople who have multiple customers. 
+Ans : select s.sname from 
+salespeople s join Customers c 
+On c.snum = s.snum
+Group by sname having count(c.snum) > 1;
+
