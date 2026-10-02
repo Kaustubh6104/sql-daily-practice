@@ -1,0 +1,27 @@
+Q31. Find salespeople who have multiple customers. 
+Ans : select s.sname from 
+salespeople s join Customers c 
+On c.snum = s.snum
+Group by sname having count(c.snum) > 1;
+
+Q32. Find salespeople with customers located in their city
+Ans : select s.sname , c.cname, s.city from 
+	Customers c join salespeople s 
+	On c.city = s.city 
+
+Q33.Find all salespeople whose name starts with ‘P’ and the fourth character is ‘l’. 
+Ans : select * from SalesPeople 
+	Where sname like “P__I”;
+
+Q34. Extract the Salespeople table in the following order : SNUM, SNAME, COMMISSION, CITY.
+Ans : select Snum,Sname,comm as Commission , City
+	From SalesPeople;
+	
+
+	
+Q35.Write a query that uses a subquery to obtain all orders for the customer named Cisneros. Assume you do not know his customer number. 
+Ans:select O.num, O.amt  
+	From Orders O 	
+	Where O.Cnum=( select Cnum from Customers where 
+	Cname = “Cisneros”);
+
