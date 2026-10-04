@@ -1,0 +1,30 @@
+
+ Q36.Find the largest orders for Serres and Rifkin. 
+Ans : select S.sname,max(O.amt)
+	From SalesPeople S join Orders O
+	On S.snum = O.snum
+	Where S.Sname in( “Serres”  “Rifkin”)
+Group By S.sname; 
+
+Q37. Select all customers whose names fall in between ‘A’ and ‘G’ alphabetical range
+Ans : select Cname from Customers 
+Where Cname>=A and Cname <H;
+
+
+Q.38.Select all the possible combinations of customers that you can assign. 
+Ans : select c1.cname,c2.cname from 
+	Customers c1 join customers c2;
+
+
+Q39.Select all orders that are greater than the average for October 4. 
+Ans : select amt from orders where amt > (select avg(o.amt) from orders o 
+	Where o.odate = ‘10/04/96’);
+
+Q40.Write a select command using a corelated subquery that selects the names and numbers of all customers with ratings equal to the maximum for their city.
+Ans: SELECT c.cname, c.cnum
+FROM Customers c
+WHERE c.rating = (
+    SELECT MAX(c2.rating)
+    FROM Customers c2
+    WHERE c2.city = c.city
+);
