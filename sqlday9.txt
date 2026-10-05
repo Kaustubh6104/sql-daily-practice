@@ -1,0 +1,21 @@
+
+Q41. Write a query that totals the orders for each day and places the results in descending order. 
+Ans: SELECT odate, COUNT(odate) AS total_orders
+FROM Orders
+GROUP BY odate
+ORDER BY COUNT(odate) DESC;
+
+Q42.  Write a select command that produces the rating followed by the name of each customer in San Jose. 
+Ans: select rating, cname  from customers
+	Where city = “San Jose”;
+
+Q43. Find all orders with amounts smaller than any amount for a customer in San Jose
+Ans : select amt from orders where amt< any(select o.amt from orders o join customers c on     c.cnum = o.cnum
+	Where c.city = “San Jose”);
+
+Q44. Find all orders with above average amounts for their customers. 
+Ans: select o.amt from orders where o.amt>(select avg(o2.amt) from orders o2 where o.cnum= o2.cnum);
+
+Q45.Write a query that selects the highest rating in each city. 
+Ans : select  distinct city, max(rating) from customers 
+Groupby city; 
