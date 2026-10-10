@@ -1,0 +1,18 @@
+
+Q46.Write a query that calculates the amount of the salesperson’s commission on each order by a customer with a rating above 100.00. 
+Ans: select sname,(s.comm*o.amt) as commission from salespeople s join ordes o on 
+s.snum = o.snum and orders o join customers c on . c.cnum= o.cnum where c.ratings>100;
+Q47Count the customers with ratings above San Jose’s average. 
+Ans: select count(*) from customers where rating > (select Avg(rating) from customers where city = “San Jose”);
+
+Q48.Write a query that produces all pairs of salespeople with themselves as well as duplicate rows with the order reversed. (hard)
+Ans : SELECT s.snum, m.snum
+FROM Salespeople s
+CROSS JOIN Salespeople m
+ORDER BY s.snum, m.snum;
+
+Q49.Find all salespeople that are located in either Barcelona or London. 
+Ans:  select snum , sname from salespeople where city = “barcelona” or city = “london”
+
+Q50. Find all salespeople with only one customer. 
+Ans : select distinct (c.snum), s.sname from customers c join salespeople s onc.snum = s.snum;
